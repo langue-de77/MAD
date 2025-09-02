@@ -15,6 +15,13 @@ import jp.ac.meijou.android.s241205161.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private PrefDataStore prefDataStore;
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        prefDataStore.get("name",String.class).ifPresent(name -> binding.text.setText(name));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,34 +35,20 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        prefDataStore = PrefDataStore.getInstance(this);
+
         binding.changeButton.setOnClickListener(view -> {
             var color = (-1 * (binding.colorText.getCurrentTextColor())+1600000) % 16777216;
             if (color > 0)
                 color = color * -1;
             binding.colorText.setText(String.valueOf(color));
             binding.colorText.setTextColor(color);
+
+            binding.text.setText(binding.editText.getText().toString());
         });
-        binding.applyButton.setOnClickListener(view -> {
-            binding.text.setText(binding.editText.getText().toString() + ": Applied");
+        binding.saveButton.setOnClickListener(view -> {
+            prefDataStore.set("name", binding.editText.getText().toString());
+            binding.colorText.setText("成功");
         });
-        binding.editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                binding.text.setText(s.toString());
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-        });
-
-        binding.text.setText(R.string.author_lastName);
-        binding.text.setTextColor(binding.text.getCurrentTextColor()+100);
     }
 }
