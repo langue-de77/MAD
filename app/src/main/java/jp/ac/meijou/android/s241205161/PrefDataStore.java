@@ -51,7 +51,7 @@ public class PrefDataStore {
     }
     public <T> Optional<T> get(String key, Class<T> type){
         return dataStore.data().map(prefs -> {
-            Preferences.Key<?> prefKey = null;
+            Preferences.Key<?> prefKey;
             switch (type.getSimpleName()){
                 case "Integer":
                     prefKey = PreferencesKeys.intKey(key);
