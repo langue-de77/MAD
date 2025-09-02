@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Cipher</string>
+    <string name="author_firstName">Riku</string>
+    <string name="author_lastName">Matsui</string>
 </resources>
