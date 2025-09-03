@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         prefDataStore.get("name",String.class).ifPresent(name -> binding.text.setText(name));
+        binding.colorText.setText(getIntent().getStringExtra("cipher"));
     }
 
     @Override

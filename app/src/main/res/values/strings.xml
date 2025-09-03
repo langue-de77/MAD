@@ -2,4 +2,7 @@
     <string name="app_name">Cipher</string>
     <string name="author_firstName">Riku</string>
     <string name="author_lastName">Matsui</string>
+    <string name="explicit_intent">明示的intent</string>
+    <string name="implicit_intent">暗黙的intent</string>
+    <string name="send">Send</string>
 </resources>
