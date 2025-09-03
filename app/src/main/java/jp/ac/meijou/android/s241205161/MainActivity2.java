@@ -5,19 +5,40 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Optional;
+
 import jp.ac.meijou.android.s241205161.databinding.ActivityMain2Binding;
-import jp.ac.meijou.android.s241205161.databinding.ActivityMainBinding;
 
 public class MainActivity2 extends AppCompatActivity {
 
     private ActivityMain2Binding binding;
 
-    String text = "";
+    private final ActivityResultLauncher<Intent> getActivityResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                switch (result.getResultCode()){
+                    case RESULT_OK:
+                        Optional.ofNullable(result.getData())
+                                .map(data -> data.getStringExtra("ret"))
+                                .map(text -> "Result: " + text)
+                                .ifPresent(text -> binding.resultText.setText(text));
+                        break;
+                    case RESULT_CANCELED:
+                        binding.resultText.setText("Result: Cancelled");
+                        break;
+                    default:
+                        binding.resultText.setText("Result: Unknown(" + result.getResultCode() + ")");
+                        break;
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +54,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         binding.buttonA.setOnClickListener(view -> {
             var intent = new Intent(this, MainActivity.class);
-            intent.putExtra("cipher", text);
             startActivity(intent);
         });
         binding.buttonB.setOnClickListener(view -> {
@@ -43,7 +63,14 @@ public class MainActivity2 extends AppCompatActivity {
             startActivity(intent);
         });
         binding.sendButton.setOnClickListener(view -> {
-            text = binding.editTextText.getText().toString();
+            var text = binding.editTextText.getText().toString();
+            var intent = new Intent(this, MainActivity4.class);
+            intent.putExtra("cipher", text);
+            startActivity(intent);
+        });
+        binding.bootButton.setOnClickListener(view -> {
+            var intent = new Intent(this, MainActivity4.class);
+            getActivityResult.launch(intent);
         });
     }
 }
