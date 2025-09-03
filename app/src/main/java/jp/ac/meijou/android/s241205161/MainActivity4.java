@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Optional;
 
-import jp.ac.meijou.android.s241205161.databinding.ActivityMain2Binding;
 import jp.ac.meijou.android.s241205161.databinding.ActivityMain4Binding;
 
 public class MainActivity4 extends AppCompatActivity {

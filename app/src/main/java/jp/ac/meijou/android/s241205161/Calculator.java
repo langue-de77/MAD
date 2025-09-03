@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import jp.ac.meijou.android.s241205161.databinding.ActivityCalculatorBinding;
-import jp.ac.meijou.android.s241205161.databinding.ActivityMainBinding;
 
 public class Calculator extends AppCompatActivity {
 
