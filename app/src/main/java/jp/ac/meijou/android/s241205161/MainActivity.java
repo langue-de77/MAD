@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         prefDataStore = PrefDataStore.getInstance(this);
 
         binding.changeButton.setOnClickListener(view -> {
-            var color = (-1 * (binding.colorText.getCurrentTextColor())+1600000) % 16777216;
+            var color = (-1 * binding.colorText.getCurrentTextColor() + 1) % 16777216;
             if (color > 0)
                 color = color * -1;
             binding.colorText.setText(String.valueOf(color));
