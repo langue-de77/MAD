@@ -12,13 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-
 import java.io.IOException;
-import java.util.Optional;
 
-import jp.ac.meijou.android.s241205161.databinding.ActivityMain5Binding;
 import jp.ac.meijou.android.s241205161.databinding.ActivityMain6Binding;
 import okhttp3.Call;
 import okhttp3.Callback;
