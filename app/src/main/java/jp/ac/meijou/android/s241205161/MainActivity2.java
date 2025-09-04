@@ -53,7 +53,33 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         binding.buttonA.setOnClickListener(view -> {
-            var intent = new Intent(this, MainActivity7.class);
+            Intent intent = null;
+            switch (Integer.parseInt(binding.editTextText2.getText().toString())){
+                case 1:
+                    intent = new Intent(this, MainActivity.class);
+                    break;
+                case 2:
+                    intent = new Intent(this, MainActivity2.class);
+                    break;
+                case 3:
+                    intent = new Intent(this, Calculator.class);
+                    break;
+                case 4:
+                    intent = new Intent(this, MainActivity4.class);
+                    break;
+                case 5:
+                    intent = new Intent(this, MainActivity5.class);
+                    break;
+                case 6:
+                    intent = new Intent(this, MainActivity6.class);
+                    break;
+                case 7:
+                    intent = new Intent(this, MainActivity7.class);
+                    break;
+                default:
+                    binding.editTextText2.setText("1~7の数字を入力してください");
+                    return;
+            }
             startActivity(intent);
         });
         binding.buttonB.setOnClickListener(view -> {
