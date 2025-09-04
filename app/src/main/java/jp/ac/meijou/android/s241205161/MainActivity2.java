@@ -53,7 +53,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         binding.buttonA.setOnClickListener(view -> {
-            var intent = new Intent(this, MainActivity5.class);
+            var intent = new Intent(this, MainActivity7.class);
             startActivity(intent);
         });
         binding.buttonB.setOnClickListener(view -> {
